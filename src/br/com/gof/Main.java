@@ -2,6 +2,9 @@ package br.com.gof;
 
 import br.com.gof.builder.*;
 import br.com.gof.facade.Facade;
+import br.com.gof.observer.Hobbits;
+import br.com.gof.observer.Orcs;
+import br.com.gof.observer.Weather;
 import br.com.gof.proxy.IvoryTower;
 import br.com.gof.proxy.Wizard;
 import br.com.gof.proxy.WizardTowerProxy;
@@ -85,5 +88,17 @@ public class Main {
                 .withWeapon(Weapon.BOW)
                 .build();
         System.out.println(thief.toString());
+        System.out.println();
+
+        // Observer
+        System.out.println("--- Observer ---");
+        var weather = new Weather();
+        weather.addObserver(new Orcs());
+        weather.addObserver(new Hobbits());
+
+        weather.timePasses();
+        weather.timePasses();
+        weather.timePasses();
+        weather.timePasses();
     }
 }
