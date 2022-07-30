@@ -1,5 +1,6 @@
 package br.com.gof;
 
+import br.com.gof.builder.*;
 import br.com.gof.facade.Facade;
 import br.com.gof.proxy.IvoryTower;
 import br.com.gof.proxy.Wizard;
@@ -12,6 +13,7 @@ import br.com.gof.strategy.*;
 public class Main {
     public static void main(String[] args) {
         // Singleton
+        System.out.println("--- Singleton ---");
         SingletonLazy lazy = SingletonLazy.getInstancia();
         System.out.println(lazy);
         lazy = SingletonLazy.getInstancia();
@@ -26,8 +28,10 @@ public class Main {
         System.out.println(lazyHolder);
         lazyHolder = SingletonLazyHolder.getInstancia();
         System.out.println(lazyHolder);
+        System.out.println();
 
         // Strategy
+        System.out.println("--- Strategy ---");
         Comportamento defensivo = new ComportamentoDefensivo();
         Comportamento normal = new ComportamentoNormal();
         Comportamento agressivo = new ComportamentoAgressivo();
@@ -44,17 +48,42 @@ public class Main {
         robo.setComportamento(agressivo);
         robo.mover();
         robo.mover();
+        System.out.println();
 
         // Facade
+        System.out.println("--- Facade ---");
         Facade facade = new Facade();
         facade.migrarCliente("Welber", "37014-500");
+        System.out.println();
 
         // Proxy
+        System.out.println("--- Proxy ---");
         var proxy = new WizardTowerProxy(new IvoryTower());
         proxy.enter(new Wizard("Red wizard"));
         proxy.enter(new Wizard("White wizard"));
         proxy.enter(new Wizard("Black wizard"));
         proxy.enter(new Wizard("Green wizard"));
         proxy.enter(new Wizard("Brown wizard"));
+        System.out.println();
+
+        // Builder
+        System.out.println("--- Builder ---");
+        var mage = new Hero.Builder(Profession.MAGE, "Riobard")
+                .withHairColor(HairColor.BLACK)
+                .withWeapon(Weapon.DAGGER)
+                .build();
+        System.out.println(mage.toString());
+
+        var warrior = new Hero.Builder(Profession.WARRIOR, "Amberjill")
+                .withHairColor(HairColor.BLOND)
+                .withHairType(HairType.LONG_CURLY).withArmor(Armor.CHAIN_MAIL).withWeapon(Weapon.SWORD)
+                .build();
+        System.out.println(warrior.toString());
+
+        var thief = new Hero.Builder(Profession.THIEF, "Desmond")
+                .withHairType(HairType.BALD)
+                .withWeapon(Weapon.BOW)
+                .build();
+        System.out.println(thief.toString());
     }
 }
