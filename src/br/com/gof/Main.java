@@ -1,5 +1,7 @@
 package br.com.gof;
 
+import br.com.gof.adapter.Captain;
+import br.com.gof.adapter.FishingBoatAdapter;
 import br.com.gof.builder.*;
 import br.com.gof.chain_of_responsability.OrcKing;
 import br.com.gof.chain_of_responsability.Request;
@@ -111,5 +113,11 @@ public class Main {
         king.makeRequest(new Request(RequestType.DEFEND_CASTLE, "defend castle"));
         king.makeRequest(new Request(RequestType.TORTURE_PRISONER, "torture prisoner"));
         king.makeRequest(new Request(RequestType.COLLECT_TAX, "collect tax"));
+        System.out.println();
+
+        // Adapter
+        System.out.println("--- Adapter ---");
+        var captain = new Captain(new FishingBoatAdapter());
+        captain.row();
     }
 }
