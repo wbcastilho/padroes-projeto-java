@@ -1,6 +1,9 @@
 package br.com.gof;
 
 import br.com.gof.builder.*;
+import br.com.gof.chain_of_responsability.OrcKing;
+import br.com.gof.chain_of_responsability.Request;
+import br.com.gof.chain_of_responsability.RequestType;
 import br.com.gof.facade.Facade;
 import br.com.gof.observer.Hobbits;
 import br.com.gof.observer.Orcs;
@@ -100,5 +103,13 @@ public class Main {
         weather.timePasses();
         weather.timePasses();
         weather.timePasses();
+        System.out.println();
+
+        // Chain of Reponsavility
+        System.out.println("--- Chain of Reponsavility ---");
+        var king = new OrcKing();
+        king.makeRequest(new Request(RequestType.DEFEND_CASTLE, "defend castle"));
+        king.makeRequest(new Request(RequestType.TORTURE_PRISONER, "torture prisoner"));
+        king.makeRequest(new Request(RequestType.COLLECT_TAX, "collect tax"));
     }
 }
