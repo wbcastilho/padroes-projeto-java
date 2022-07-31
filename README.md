@@ -9,3 +9,5 @@ Seguem exemplos de alguns padrões de projeto sendo:
 * Singleton
 * Strategy
 
+Créditos: *Venilton FalvoJr*, *iluwatar*
+
